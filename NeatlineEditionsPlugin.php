@@ -46,11 +46,6 @@ class NeatlineEditionsPlugin
             add_plugin_hook($hookName, array($this, $functionName));
         }
 
-        foreach (self::$_filters as $filterName) {
-            $functionName = Inflector::variablize($filterName);
-            add_filter($filterName, array($this, $functionName));
-        }
-
     }
 
 
