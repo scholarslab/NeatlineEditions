@@ -14,7 +14,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
  */
 
-class Neatline_IndexController extends Omeka_Controller_Action
+class NeatlineEditions_IndexController extends Omeka_Controller_Action
 {
 
     /**
