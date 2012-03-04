@@ -22,6 +22,10 @@ class NeatlineEditionsPlugin
         'uninstall'
     );
 
+    private static $_filters = array(
+        'admin_navigation_main'
+    );
+
     /**
      * Get database, add hooks and filters.
      *
@@ -44,6 +48,11 @@ class NeatlineEditionsPlugin
         foreach (self::$_hooks as $hookName) {
             $functionName = Inflector::variablize($hookName);
             add_plugin_hook($hookName, array($this, $functionName));
+        }
+
+        foreach (self::$_filters as $filterName) {
+            $functionName = Inflector::variablize($filterName);
+            add_filter($filterName, array($this, $functionName));
         }
 
     }
@@ -86,6 +95,23 @@ class NeatlineEditionsPlugin
         $sql = "DROP TABLE IF EXISTS `{$this->_db->prefix}neatline_editions`";
         $this->_db->query($sql);
 
+    }
+
+    /**
+     * Filter callbacks:
+     */
+
+    /**
+     * Add tab to admin menu.
+     *
+     * @param array $tabs This is an array of label => URI pairs.
+     *
+     * @return array The tabs array with the Neatline Maps tab.
+     */
+    public function adminNavigationMain($tabs)
+    {
+        $tabs['Neatline Editions'] = uri('neatline-editions');
+        return $tabs;
     }
 
 }
