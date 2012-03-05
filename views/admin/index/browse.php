@@ -17,6 +17,10 @@
 head();
 ?>
 
+<?php echo $this->partial('index/_header.php', array(
+    'subtitle' => 'Browse Editions'
+)); ?>
+
 <div id="primary">
 <?php echo flash(); ?>
 </div>
