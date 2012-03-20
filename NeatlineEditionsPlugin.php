@@ -108,24 +108,26 @@ class NeatlineEditionsPlugin
     public function defineRoutes($router)
     {
 
-        // Admin slug.
+        // Public edition view.
         $router->addRoute(
-            'nlEditionsAdmin',
+            'neatlineEditions',
             new Zend_Controller_Router_Route(
-                'neatline-editions/:action',
+                'neatline-editions/:slug',
                 array(
                     'module'        => 'neatline-editions',
                     'controller'    => 'index',
-                    'action'        => 'browse'
+                    'action'        => 'show'
                 )
             )
         );
 
     }
 
+
     /**
      * Filter callbacks:
      */
+
 
     /**
      * Add tab to admin menu.

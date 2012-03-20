@@ -2,13 +2,11 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
 
 /**
- * Admin controller.
+ * Public views controller.
  *
  * @package     omeka
  * @subpackage  neatline
  * @author      Scholars' Lab <>
- * @author      Bethany Nowviskie <bethany@virginia.edu>
- * @author      Adam Soroka <ajs6f@virginia.edu>
  * @author      David McClure <david.mcclure@virginia.edu>
  * @copyright   2012 The Board and Visitors of the University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
@@ -28,51 +26,11 @@ class NeatlineEditions_IndexController extends Omeka_Controller_Action
     }
 
     /**
-     * Redirect index route to browse.
+     * Show edition.
      *
      * @return void
      */
-    public function indexAction()
-    {
-        $this->_redirect('neatline-editions/browse');
-    }
-
-    /**
-     * Show editions.
-     *
-     * @return void
-     */
-    public function browseAction()
-    {
-
-    }
-
-    /**
-     * Create an edition.
-     *
-     * @return void
-     */
-    public function addAction()
-    {
-
-    }
-
-    /**
-     * Edit an edition.
-     *
-     * @return void
-     */
-    public function editAction()
-    {
-
-    }
-
-    /**
-     * Delete an edition.
-     *
-     * @return void
-     */
-    public function deleteAction()
+    public function showAction()
     {
 
     }

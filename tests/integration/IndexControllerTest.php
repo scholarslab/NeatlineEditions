@@ -27,35 +27,12 @@ class NeatlineEditions_IndexControllerTest extends NeatlineEditions_Test_AppTest
     }
 
     /**
-     * Index should redirect to the browse action.
+     * .
      *
      * @return void.
      */
-    public function testIndexRedirect()
+    public function testStub()
     {
-
-        $this->dispatch('neatline-editions');
-        $this->assertModule('neatline-editions');
-        $this->assertController('index');
-        $this->assertAction('browse');
-
-    }
-
-    /**
-     * The browse view should show a link to add a new edition.
-     *
-     * @return void.
-     */
-    public function testBrowseMarkup()
-    {
-
-        $this->dispatch('neatline-editions');
-
-        // There should be a 'Create Neatline' button.
-        $this->assertQueryContentContains(
-            'a.add',
-            'Create an Edition'
-        );
 
     }
 
