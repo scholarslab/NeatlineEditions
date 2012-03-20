@@ -17,7 +17,7 @@
 require_once '../NeatlineEditionsPlugin.php';
 require_once '../../Neatline/NeatlinePlugin.php';
 
-class NeatlineEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
+class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 {
 
     private $_dbHelper;

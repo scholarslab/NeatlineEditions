@@ -12,7 +12,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
  */
 
-class NeatlineEditions_IndexControllerTest extends NeatlineEditions_Test_AppTestCase
+class NLEditions_IndexControllerTest extends NLEditions_Test_AppTestCase
 {
 
     /**

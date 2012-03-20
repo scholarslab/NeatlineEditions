@@ -20,7 +20,8 @@ class NeatlineEditionsPlugin
     private static $_hooks = array(
         'install',
         'uninstall',
-        'define_routes'
+        'define_routes',
+        'after_save_form_item'
     );
 
     private static $_filters = array(
@@ -120,6 +121,20 @@ class NeatlineEditionsPlugin
                 )
             )
         );
+
+    }
+
+    /**
+     * Process exhibit assignment on item add/edit.
+     *
+     * @param Item $record The item.
+     * @param array $post The complete $_POST.
+     *
+     * @return void.
+     */
+    public function afterSaveFormItem($record, $post)
+    {
+
 
     }
 
