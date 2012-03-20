@@ -23,7 +23,7 @@
 
         <?php foreach ($exhibits as $exhibit): ?>
           <option value="<?php echo $exhibit->id; ?>"
-              <?php if ($edition->exhibit_id === $exhibit->id) { echo 'selected'; } ?>>
+              <?php if ($edition->exhibit_id === $exhibit->id) { echo 'selected="selected"'; } ?>>
             <?php echo $exhibit->name; ?>
           </option>
         <?php endforeach; ?>

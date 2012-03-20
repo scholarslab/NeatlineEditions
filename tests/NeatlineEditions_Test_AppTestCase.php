@@ -127,7 +127,8 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
         }
 
         // Create edition.
-        $edition = new NeatlineEdition($item, $edition);
+        $edition = new NeatlineEdition($item, $exhibit);
+        $edition->save();
 
         return $edition;
 

@@ -107,4 +107,46 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
 
     }
 
+    /**
+     * When an edition exists, the dropdown select should default to the
+     * previously selected exhibit.
+     *
+     * @return void.
+     */
+    public function testNeatlineEditionsItemEditSelect()
+    {
+
+        // Create exhibits.
+        $exhibit1 = $this->_createExhibit('Exhibit 1');
+        $exhibit2 = $this->_createExhibit('Exhibit 2');
+
+        // Create item.
+        $item = new Item();
+        $item->save();
+
+        // Create edition with exhibit1.
+        $this->_createEdition($item, $exhibit1);
+
+        // Hit item edit.
+        $this->dispatch('items/edit/' . $item->id);
+
+        // Check for "selected".
+        $this->assertXpathContentContains(
+            '//select[@id="exhibit-id"]/option[1]',
+            'Select Below');
+        $this->assertXpathContentContains(
+            '//select[@id="exhibit-id"]/option[@value="'
+            . $exhibit1->id .'"][@selected="selected"]',
+            'Exhibit 1');
+        $this->assertXpathContentContains(
+            '//select[@id="exhibit-id"]/option[@value="'
+            . $exhibit2->id . '"]',
+            'Exhibit 2');
+        $this->assertNotXpathContentContains(
+            '//select[@id="exhibit-id"]/option[@value="'
+            . $exhibit2->id . '"][@selected="selected"]',
+            'Exhibit 2');
+
+    }
+
 }
