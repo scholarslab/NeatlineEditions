@@ -23,6 +23,7 @@ class NeatlineEditions_NeatlineEditionTest extends NeatlineEditions_Test_AppTest
     public function setUp()
     {
         $this->setUpPlugin();
+        $this->editionsTable = $this->db->getTable('NeatlineEdition');
     }
 
     /**
@@ -33,18 +34,20 @@ class NeatlineEditions_NeatlineEditionTest extends NeatlineEditions_Test_AppTest
     public function testAttributeAccess()
     {
 
-        // // Create a record.
-        // $layer = new NeatlineBaseLayer();
+        // Create a record.
+        $edition = new NeatlineEdition();
 
-        // // Set.
-        // $layer->name = 'name';
-        // $layer->save();
+        // Set.
+        $edition->exhibit_id = 1;
+        $edition->item_id = 1;
+        $edition->save();
 
-        // // Re-get the exhibit object.
-        // $layer = $this->_layersTable->find($layer->id);
+        // Re-get the edition object.
+        $edition = $this->editionsTable->find($edition->id);
 
-        // // Get.
-        // $this->assertEquals($layer->name, 'name');
+        // Get.
+        $this->assertEquals($edition->exhibit_id, 1);
+        $this->assertEquals($edition->item_id, 1);
 
     }
 
