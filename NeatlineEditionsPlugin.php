@@ -24,7 +24,7 @@ class NeatlineEditionsPlugin
     );
 
     private static $_filters = array(
-        'admin_navigation_main'
+        'admin_items_form_tabs'
     );
 
     /**
@@ -130,15 +130,15 @@ class NeatlineEditionsPlugin
 
 
     /**
-     * Add tab to admin menu.
+     * Add tab to items add/edit.
      *
-     * @param array $tabs This is an array of label => URI pairs.
+     * @param array $tabs Associative array with tab name => markup.
      *
-     * @return array The tabs array with the Neatline Maps tab.
+     * @return array The tabs array with the Neatline Editions tab.
      */
-    public function adminNavigationMain($tabs)
+    public function adminItemsFormTabs($tabs)
     {
-        $tabs['Neatline Editions'] = uri('neatline-editions');
+        $tabs['Neatline Editions'] = 'test';
         return $tabs;
     }
 
