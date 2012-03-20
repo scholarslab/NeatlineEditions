@@ -34,7 +34,7 @@ class NeatlineEditions_IndexController extends Omeka_Controller_Action
      */
     public function indexAction()
     {
-        $this->redirect->goto('browse');
+        $this->_redirect('neatline-editions/browse');
     }
 
     /**

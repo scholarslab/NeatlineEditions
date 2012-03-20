@@ -19,7 +19,8 @@ class NeatlineEditionsPlugin
     // Hooks.
     private static $_hooks = array(
         'install',
-        'uninstall'
+        'uninstall',
+        'define_routes'
     );
 
     private static $_filters = array(
@@ -94,6 +95,31 @@ class NeatlineEditionsPlugin
         // Drop the editions table.
         $sql = "DROP TABLE IF EXISTS `{$this->_db->prefix}neatline_editions`";
         $this->_db->query($sql);
+
+    }
+
+    /**
+     * Register routes.
+     *
+     * @param object $router The router.
+     *
+     * @return void.
+     */
+    public function defineRoutes($router)
+    {
+
+        // Admin slug.
+        $router->addRoute(
+            'nlEditionsAdmin',
+            new Zend_Controller_Router_Route(
+                'neatline-editions/:action',
+                array(
+                    'module'        => 'neatline-editions',
+                    'controller'    => 'index',
+                    'action'        => 'browse'
+                )
+            )
+        );
 
     }
 
