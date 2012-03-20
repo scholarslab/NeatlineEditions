@@ -12,8 +12,26 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
  */
 
-class NeatlineDataRecordTable extends Omeka_Db_Table
+class NeatlineEditionTable extends Omeka_Db_Table
 {
+
+    /**
+     * Try to find a record for an item. If no record exists, return false.
+     *
+     * @param Omeka_record $item The item.
+     *
+     * @return Omeka_record $edition The edition, if one exists; else false.
+     */
+    public function findByItem($item)
+    {
+
+        $edition = $this->fetchObject(
+            $this->getSelect()->where('item_id = ' . $item->id)
+        );
+
+        return $edition ? $edition : false;
+
+    }
 
     /**
      * For a given item, try to find an existing edition record for the item.
@@ -23,11 +41,22 @@ class NeatlineDataRecordTable extends Omeka_Db_Table
      * @param Omeka_record $item The item.
      * @param Omeka_record $exhibit The exhibit.
      *
-     * @return void.
+     * @return Omeka_record $edition The new or updated edition.
      */
     public function createOrUpdate($item, $exhibit)
     {
 
+        // Try to get existing record.
+        $record = $this->findByItem($item);
+
+        // If record exists, update.
+        if ($record) { $record->exhibit_id = $exhibit->id; }
+
+        // Otherwise, create a new record
+        else { $record = new NeatlineEdition($item, $exhibit); }
+
+        $record->save();
+        return $record;
 
     }
 
