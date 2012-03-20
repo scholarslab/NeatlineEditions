@@ -1,1 +1,1 @@
-Connect texts with Neatline exhibit.
+Connect texts with Neatline exhibits.
