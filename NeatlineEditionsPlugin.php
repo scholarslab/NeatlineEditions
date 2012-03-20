@@ -146,13 +146,15 @@ class NeatlineEditionsPlugin
 
         // Check for a set exhibit value.
         if (is_numeric($id)) {
-
-            // Get the exhibit.
+            // Get the exhibit, create or update edition.
             $exhibit = $this->exhibitsTable->find($id);
-
-            // Create or update edition record.
             $this->editionsTable->createOrUpdate($record, $exhibit);
+        }
 
+        // If there is an existing edition, delete.
+        else {
+            $edition = $this->editionsTable->findByItem($record);
+            if ($edition) { $edition->delete(); }
         }
 
     }
