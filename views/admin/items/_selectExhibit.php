@@ -13,3 +13,16 @@
  */
 ?>
 
+<div class="field">
+  <label for="exhibit-id">Exhibit</label>
+  <div class="inputs">
+    <select name="exhibit_id" id="exhibit-id">
+      <option>Select Below</option>
+      <?php foreach ($exhibits as $exhibit): ?>
+        <option value="<?php echo $exhibit->id; ?>">
+          <?php echo $exhibit->name; ?>
+        </option>
+      <?php endforeach; ?>
+    </select>
+  </div>
+</div>

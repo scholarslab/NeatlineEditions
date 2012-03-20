@@ -138,8 +138,16 @@ class NeatlineEditionsPlugin
      */
     public function adminItemsFormTabs($tabs)
     {
-        $tabs['Neatline Editions'] = __v()->partial('items/_selectExhibit.php');
+
+        // Get exhibits.
+        $exhibits = $this->_db->getTable('NeatlineExhibit')->findAll();
+
+        // Insert tab.
+        $tabs['Neatline Editions'] = __v()->partial(
+            'items/_selectExhibit.php', array('exhibits' => $exhibits));
+
         return $tabs;
+
     }
 
 }
