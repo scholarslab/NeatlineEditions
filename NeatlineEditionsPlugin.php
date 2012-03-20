@@ -138,7 +138,7 @@ class NeatlineEditionsPlugin
      */
     public function adminItemsFormTabs($tabs)
     {
-        $tabs['Neatline Editions'] = 'test';
+        $tabs['Neatline Editions'] = __v()->partial('items/_selectExhibit.php');
         return $tabs;
     }
 
