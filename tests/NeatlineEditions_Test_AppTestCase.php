@@ -7,8 +7,6 @@
  * @package     omeka
  * @subpackage  neatline
  * @author      Scholars' Lab <>
- * @author      Bethany Nowviskie <bethany@virginia.edu>
- * @author      Adam Soroka <ajs6f@virginia.edu>
  * @author      David McClure <david.mcclure@virginia.edu>
  * @copyright   2011 The Board and Visitors of the University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
@@ -132,6 +130,21 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
         $edition = new NeatlineEdition($item, $edition);
 
         return $edition;
+
+    }
+
+    /**
+     * Create an Item.
+     *
+     * @return Omeka_record $item The item.
+     */
+    public function _createItem()
+    {
+
+        $item = new Item;
+        $item->save();
+
+        return $item;
 
     }
 

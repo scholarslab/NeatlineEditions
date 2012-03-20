@@ -51,4 +51,26 @@ class NLEditions_NeatlineEditionTest extends NLEditions_Test_AppTestCase
 
     }
 
+    /**
+     * Test foreign key assignments when item and exhibit records are passed
+     * on instantiation.
+     *
+     * @return void.
+     */
+    public function testConstructKeyAssignments()
+    {
+
+        // Create item and exhibit.
+        $item = $this->_createItem();
+        $exhibit = $this->_createExhibit();
+
+        // Create a record.
+        $edition = new NeatlineEdition($item, $exhibit);
+
+        // Check.
+        $this->assertEquals($edition->exhibit_id, $exhibit->id);
+        $this->assertEquals($edition->item_id, $item->id);
+
+    }
+
 }
