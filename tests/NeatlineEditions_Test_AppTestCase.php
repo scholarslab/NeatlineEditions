@@ -73,4 +73,38 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
         new NeatlineEditionsPlugin;
     }
 
+
+    /**
+     * Testing helpers.
+     */
+
+
+    /**
+     * Create a Neatline exhibit.
+     *
+     * @return Omeka_record $neatline The exhibit.
+     */
+    public function _createExhibit(
+        $name = 'Test Exhibit',
+        $slug = 'test-exhibit',
+        $public = 1,
+        $is_map = 1,
+        $is_timeline = 1,
+        $is_items = 1
+    )
+    {
+
+        $exhibit = new NeatlineExhibit();
+        $exhibit->name = $name;
+        $exhibit->slug = $slug;
+        $exhibit->public = $public;
+        $exhibit->is_map = $is_map;
+        $exhibit->is_timeline = $is_timeline;
+        $exhibit->is_items = $is_items;
+        $exhibit->save();
+
+        return $exhibit;
+
+    }
+
 }
