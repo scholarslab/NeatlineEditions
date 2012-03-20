@@ -107,4 +107,32 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 
     }
 
+    /**
+     * Create a Neatline edition.
+     *
+     * @param Omeka_record $item The item record.
+     * @param Omeka_record $exhibit The exhibit record.
+     *
+     * @return Omeka_record $neatline The exhibit.
+     */
+    public function _createEdition($item = null, $exhibit = null)
+    {
+
+        // If null, create item.
+        if (is_null($item)) {
+            $item = new Item();
+        }
+
+        // If null, create exhibit.
+        if (is_null($exhibit)) {
+            $exhibit = $this->_createExhibit();
+        }
+
+        // Create edition.
+        $edition = new NeatlineEdition($item, $edition);
+
+        return $edition;
+
+    }
+
 }

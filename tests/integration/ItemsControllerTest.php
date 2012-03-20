@@ -48,7 +48,7 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
         );
 
         // Check for select and options.
-        $this->assertXpath('//select[@id="exhibit-id"]');
+        $this->assertXpath('//select[@id="exhibit-id"][@name="exhibit_id"]');
         $this->assertXpathContentContains(
             '//select[@id="exhibit-id"]/option[1]',
             'Select Below');
@@ -94,7 +94,7 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
         );
 
         // Check for select and options.
-        $this->assertXpath('//select[@id="exhibit-id"]');
+        $this->assertXpath('//select[@id="exhibit-id"][@name="exhibit_id"]');
         $this->assertXpathContentContains(
             '//select[@id="exhibit-id"]/option[1]',
             'Select Below');

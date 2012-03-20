@@ -24,4 +24,29 @@ class NeatlineEdition extends Omeka_record
     public $item_id;
 
 
+    /**
+     * Set keys.
+     *
+     * @param Omeka_record $item The item record.
+     * @param Omeka_record $exhibit The exhibit record.
+     *
+     * @return void.
+     */
+    public function __construct($item = null, $exhibit = null)
+    {
+
+        parent::__construct();
+
+        // If defined, set the item key.
+        if (!is_null($item)) {
+            $this->item_id = $item->id;
+        }
+
+        // If defined, set the exhibit key.
+        if (!is_null($exhibit)) {
+            $this->exhibit_id = $exhibit->id;
+        }
+
+    }
+
 }
