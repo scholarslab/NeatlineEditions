@@ -35,8 +35,14 @@ class NeatlineEditionsPlugin
      */
     public function __construct()
     {
+
+        // Get database and tables.
         $this->_db = get_db();
+        $this->exhibitsTable = $this->_db->getTable('NeatlineExhibit');
+        $this->editionsTable = $this->_db->getTable('NeatlineEdition');
+
         self::addHooksAndFilters();
+
     }
 
     /**
@@ -135,6 +141,19 @@ class NeatlineEditionsPlugin
     public function afterSaveFormItem($record, $post)
     {
 
+        // Get exhibit id.
+        $id = $post['exhibit_id'];
+
+        // Check for a set exhibit value.
+        if (is_numeric($id)) {
+
+            // Get the exhibit.
+            $exhibit = $this->exhibitsTable->find($id);
+
+            // Create or update edition record.
+            $this->editionsTable->createOrUpdate($record, $exhibit);
+
+        }
 
     }
 
@@ -154,12 +173,27 @@ class NeatlineEditionsPlugin
     public function adminItemsFormTabs($tabs)
     {
 
-        // Get exhibits.
-        $exhibits = $this->_db->getTable('NeatlineExhibit')->findAll();
+        // Set edition to false by default.
+        $edition = false;
+
+        // Get item and exhibits.
+        $exhibits = $this->exhibitsTable->findAll();
+        $item = get_current_item();
+
+        // Try to get existing edition.
+        if (!is_null($item->id)) {
+            $edition = $this->_db
+                ->getTable('NeatlineEdition')
+                ->findByItem($item);
+        }
 
         // Insert tab.
         $tabs['Neatline Editions'] = __v()->partial(
-            'items/_selectExhibit.php', array('exhibits' => $exhibits));
+            'items/_selectExhibit.php', array(
+                'exhibits' => $exhibits,
+                'edition' => $edition
+            )
+        );
 
         return $tabs;
 

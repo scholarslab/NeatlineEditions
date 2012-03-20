@@ -18,11 +18,26 @@
   <div class="inputs">
     <select name="exhibit_id" id="exhibit-id">
       <option>Select Below</option>
-      <?php foreach ($exhibits as $exhibit): ?>
-        <option value="<?php echo $exhibit->id; ?>">
-          <?php echo $exhibit->name; ?>
-        </option>
-      <?php endforeach; ?>
+
+      <?php if ($edition): ?>
+
+        <?php foreach ($exhibits as $exhibit): ?>
+          <option value="<?php echo $exhibit->id; ?>"
+              <?php if ($edition->exhibit_id === $exhibit->id) { echo 'selected'; } ?>>
+            <?php echo $exhibit->name; ?>
+          </option>
+        <?php endforeach; ?>
+
+      <?php else: ?>
+
+        <?php foreach ($exhibits as $exhibit): ?>
+          <option value="<?php echo $exhibit->id; ?>">
+            <?php echo $exhibit->name; ?>
+          </option>
+        <?php endforeach; ?>
+
+      <?php endif; ?>
+
     </select>
   </div>
 </div>
