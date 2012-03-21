@@ -49,4 +49,37 @@ class NeatlineEdition extends Omeka_record
 
     }
 
+    /**
+     * Get the parent exhibit.
+     *
+     * @return NeatlineExhibit The exhibit.
+     */
+    public function getExhibit()
+    {
+        $_exhibitsTable = $this->getTable('NeatlineExhibit');
+        return $_exhibitsTable->find($this->exhibit_id);
+    }
+
+    /**
+     * Get the parent item.
+     *
+     * @return Item The item.
+     */
+    public function getItem()
+    {
+        $_itemsTable = $this->getTable('Item');
+        return $_itemsTable->find($this->item_id);
+    }
+
+    /**
+     * Get the document.
+     *
+     * @return string $document The document.
+     */
+    public function getDocumentMarkup()
+    {
+        $item = $this->getItem();
+        return item('Item Type Medatada', 'Text', array(), $item);
+    }
+
 }

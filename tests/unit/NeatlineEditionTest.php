@@ -73,4 +73,59 @@ class NLEditions_NeatlineEditionTest extends NLEditions_Test_AppTestCase
 
     }
 
+    /**
+     * getExhibit() should return the parent exhibit.
+     *
+     * @return void.
+     */
+    public function testGetExhibit()
+    {
+
+        // Create item, exhibit, and edition.
+        $item = $this->_createItem();
+        $exhibit = $this->_createExhibit();
+        $edition = $this->_createEdition($item, $exhibit);
+
+        // Check ids.
+        $this->assertEquals($edition->getExhibit()->id, $exhibit->id);
+
+    }
+
+    /**
+     * getItem() should return the parent item.
+     *
+     * @return void.
+     */
+    public function testGetItem()
+    {
+
+        // Create item, exhibit, and edition.
+        $item = $this->_createItem();
+        $exhibit = $this->_createExhibit();
+        $edition = $this->_createEdition($item, $exhibit);
+
+        // Check ids.
+        $this->assertEquals($edition->getItem()->id, $item->id);
+
+    }
+
+    /**
+     * getDocumentMarkup() should return the document text.
+     *
+     * @return void.
+     */
+    public function testGetDocumentMarkup()
+    {
+
+        // Create item, exhibit, and edition.
+        $item = $this->_createDocumentItem();
+        $exhibit = $this->_createExhibit();
+        $edition = $this->_createEdition($item, $exhibit);
+
+        // Create "Text" element text.
+        $this->_createElementText($item, 'Item Type Metadata', 'Text', 'markup');
+        $this->assertEquals($edition->getDocumentMarkup(), 'markup');
+
+    }
+
 }

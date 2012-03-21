@@ -149,4 +149,61 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 
     }
 
+    /**
+     * Create an Item of item type metadata Document.
+     *
+     * @return Omeka_record $item The item.
+     */
+    public function _createDocumentItem()
+    {
+
+        // Get item type table.
+        $_db = get_db();
+        $itemTypeTable = $_db->getTable('ItemType');
+
+        // Get Document item type.
+        $documentType = $itemTypeTable->findByName('Document');
+
+        $item = new Item;
+        $item->item_type_id = $documentType->id;
+        $item->save();
+
+        return $item;
+
+    }
+
+    /**
+     * Create an element text for an item.
+     *
+     * @param Omeka_record $item The item.
+     * @param string $elementSet The element set.
+     * @param string $elementName The element name.
+     * @param string $value The value for the text.
+     *
+     * @return Omeka_record $text The new text.
+     */
+    public function _createElementText($item, $elementSet, $elementName, $value)
+    {
+
+        // Get tables.
+        $_db = get_db();
+        $elementTable = $_db->getTable('Element');
+        $elementTextTable = $_db->getTable('ElementText');
+        $recordTypeTable = $_db->getTable('RecordType');
+
+        // Fetch element record and the item type id.
+        $element = $elementTable->findByElementSetNameAndElementName($elementSet, $elementName);
+        $itemTypeId = $recordTypeTable->findIdFromName('Item');
+
+        $text = new ElementText;
+        $text->record_id = $item->id;
+        $text->record_type_id = $itemTypeId;
+        $text->element_id = $element->id;
+        $text->text = $value;
+        $text->save();
+
+        return $text;
+
+    }
+
 }
