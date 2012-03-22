@@ -13,3 +13,4 @@
  */
 ?>
 
+<?php echo $document; ?>
