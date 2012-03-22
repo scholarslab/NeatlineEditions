@@ -22,6 +22,8 @@ class NeatlineEditions_IndexController extends Omeka_Controller_Action
      */
     public function init()
     {
+        $this->_items = $this->getTable('Item');
+        $this->_exhibits = $this->getTable('NeatlineExhibit');
         $this->_editions = $this->getTable('NeatlineEdition');
     }
 
@@ -32,6 +34,16 @@ class NeatlineEditions_IndexController extends Omeka_Controller_Action
      */
     public function showAction()
     {
+
+        // Get exhibit and document markup.
+        $item = $this->_items->find($this->_request->id);
+        $edition = $this->_editions->findByItem($item);
+        $exhibit = $edition->getExhibit();
+        $document = $edition->getDocumentMarkup();
+
+        // Push records.
+        $this->view->edition = $edition;
+        $this->view->exhibit = $exhibit;
 
     }
 

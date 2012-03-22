@@ -119,7 +119,7 @@ class NeatlineEditionsPlugin
         $router->addRoute(
             'neatlineEditions',
             new Zend_Controller_Router_Route(
-                'neatline-editions/:slug',
+                'neatline-editions/:id',
                 array(
                     'module'        => 'neatline-editions',
                     'controller'    => 'index',

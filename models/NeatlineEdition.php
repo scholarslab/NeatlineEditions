@@ -79,7 +79,7 @@ class NeatlineEdition extends Omeka_record
     public function getDocumentMarkup()
     {
         $item = $this->getItem();
-        return item('Item Type Medatada', 'Text', array(), $item);
+        return item('Item Type Metadata', 'Text', array(), $item);
     }
 
 }
