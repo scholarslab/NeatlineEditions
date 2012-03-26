@@ -17,11 +17,12 @@
 <?php neatline_queueNeatlineAssets(); ?>
 <?php neatline_queueInThemeAssets(); ?>
 
-<!-- Custom page header. -->
-<?php echo $this->partial('public/_public_header.php', array(
-    'titlePrefix' => 'Neatline',
-    'exhibit' => $exhibit
-)); ?>
+<?php
+    $head = array(
+      'bodyclass' => 'neatline primary ' . $exhibit->slug,
+      'title' => $exhibit->name);
+    head($head);
+?>
 
 <div class="left">
     <?php echo $document; ?>
