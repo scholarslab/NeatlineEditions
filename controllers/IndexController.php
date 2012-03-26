@@ -42,6 +42,7 @@ class NeatlineEditions_IndexController extends Omeka_Controller_Action
         $document = $edition->getDocumentMarkup();
 
         // Push records.
+        $this->view->exhibit = $exhibit;
         $this->view->edition = $edition;
         $this->view->document = $document;
 

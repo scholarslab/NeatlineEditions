@@ -13,4 +13,23 @@
  */
 ?>
 
-<?php echo $document; ?>
+<?php queue_css('neatline-editions'); ?>
+<?php neatline_queueNeatlineAssets(); ?>
+<?php neatline_queueInThemeAssets(); ?>
+
+<!-- Custom page header. -->
+<?php echo $this->partial('public/_public_header.php', array(
+    'titlePrefix' => 'Neatline',
+    'exhibit' => $exhibit
+)); ?>
+
+<div class="left">
+    <?php echo $document; ?>
+</div>
+
+<div class="right">
+    <!-- The core Neatline partial. -->
+    <?php echo $this->partial('neatline/_neatline.php', array(
+        'exhibit' => $exhibit
+    )); ?>
+</div>
