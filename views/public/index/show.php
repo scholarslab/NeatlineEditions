@@ -15,7 +15,7 @@
 
 <?php queue_css('neatline-editions'); ?>
 <?php neatline_queueNeatlineAssets(); ?>
-<?php neatline_queueInThemeAssets(); ?>
+<?php neatline_queueEditionAssets(); ?>
 
 <?php
     $head = array(
@@ -25,7 +25,9 @@
 ?>
 
 <div class="left">
-    <?php echo $document; ?>
+    <div class="neatline-edition-container">
+        <?php echo $document; ?>
+    </div>
 </div>
 
 <div class="right">

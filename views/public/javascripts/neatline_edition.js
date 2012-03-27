@@ -17,6 +17,11 @@
 
         options: {
 
+            // Markup hooks.
+            markup: {
+                span: 'span.neatline-span'
+            }
+
         },
 
         /*

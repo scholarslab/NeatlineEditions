@@ -34,6 +34,7 @@ if (!defined('NLEditions_PLUGIN_DIR')) {
 
 // requires {{{
 require_once NLEditions_PLUGIN_DIR . '/NeatlineEditionsPlugin.php';
+require_once NLEditions_PLUGIN_DIR . '/helpers/NeatlineEditionsFunctions.php';
 // }}}
 
 
