@@ -15,18 +15,14 @@
 
 <div class="neatline-edition-container">
 
-  <div class="left">
-      <div class="neatline-text-container">
-          <?php echo $document; ?>
-      </div>
+  <div class="neatline-text-container">
+      <?php echo $document; ?>
   </div>
 
-  <div class="right">
-      <!-- The core Neatline partial. -->
-      <?php echo $this->partial('neatline/_neatline.php', array(
-          'exhibit' => $exhibit
-      )); ?>
-  </div>
+  <!-- The core Neatline partial. -->
+  <?php echo $this->partial('neatline/_neatline.php', array(
+      'exhibit' => $exhibit
+  )); ?>
 
 </div>
 

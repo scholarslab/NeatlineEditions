@@ -33,11 +33,51 @@
         _create: function() {
 
             // Getters.
+            this._window =      $(window);
+            this._body =        $('body');
             this.exhibit =      $(this.options.markup.exhibit);
             this.text =         $(this.options.markup.text);
 
-            // Construct viewports.
-            this.instantiateBlocks();
+            // Construct widgets.
+            this._addResizeListener();
+            this._instantiateWidgets();
+
+            // Position viewports.
+            this._positionViewports();
+
+        },
+
+        /*
+         * Measure container, position viewports.
+         *
+         * @return void.
+         */
+        _positionViewports: function() {
+
+            // Measure.
+            this.height = this.element.height();
+
+            // Apply height.
+            this.exhibit.height(this.height);
+            this.text.height(this.height);
+
+            // Redraw the exhibit.
+            this.exhibit.neatline('positionDivs');
+
+        },
+
+        /*
+         * On window resize, re-render the exhibit.
+         *
+         * @return void.
+         */
+        _addResizeListener: function() {
+
+            var self = this;
+
+            this._window.resize(function() {
+                self._positionViewports();
+            });
 
         },
 
@@ -46,7 +86,7 @@
          *
          * @return void.
          */
-        instantiateBlocks: function() {
+        _instantiateWidgets: function() {
 
             var self = this;
 
