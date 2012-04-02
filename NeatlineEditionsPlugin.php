@@ -115,15 +115,41 @@ class NeatlineEditionsPlugin
     public function defineRoutes($router)
     {
 
-        // Public edition view.
+        // In-theme view.
         $router->addRoute(
-            'neatlineEditions',
+            'neatlineEditionsInTheme',
             new Zend_Controller_Router_Route(
                 'neatline-editions/:id',
                 array(
                     'module'        => 'neatline-editions',
                     'controller'    => 'index',
                     'action'        => 'show'
+                )
+            )
+        );
+
+        // Fullscreen view.
+        $router->addRoute(
+            'neatlineEditionsFullScreen',
+            new Zend_Controller_Router_Route(
+                'neatline-editions/fullscreen/:id',
+                array(
+                    'module'        => 'neatline-editions',
+                    'controller'    => 'index',
+                    'action'        => 'fullscreen'
+                )
+            )
+        );
+
+        // Embed view.
+        $router->addRoute(
+            'neatlineEditionsEmbed',
+            new Zend_Controller_Router_Route(
+                'neatline-editions/embed/:id',
+                array(
+                    'module'        => 'neatline-editions',
+                    'controller'    => 'index',
+                    'action'        => 'embed'
                 )
             )
         );

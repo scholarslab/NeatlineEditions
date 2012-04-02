@@ -28,6 +28,7 @@ function neatline_queueEditionAssets()
 
     // Public-specific CSS additions.
     queue_css('neatline-public');
+    queue_css('neatline-editions');
 
     $google = 'http://maps.google.com/maps/api/js?v=3.5&sensor=false';
 

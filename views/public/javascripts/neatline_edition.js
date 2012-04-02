@@ -35,7 +35,52 @@
             this._window = $(window);
             this._body = $('body');
 
+            // Bind events to markup hooks.
+            this._addEvents();
+
         },
+
+        /*
+         * Bind listeners to markup hooks on document.
+         *
+         * @return void.
+         */
+        _addEvents: function() {
+
+            var self = this;
+
+            // Get spans.
+            var spans = this.element.find(this.options.markup.span);
+
+            _.each(spans, function(span) {
+
+                var slug = $(span).attr('slug');
+
+                $(span).bind({
+
+                    // Trigger hover callback.
+                    'mouseenter': function() {
+                        self._trigger('spanHover', {}, { 'slug': slug });
+                    },
+
+                    // Trigger click callback.
+                    'mousedown': function() {
+                        self._trigger('spanClick', {}, { 'slug': slug });
+                    }
+
+                });
+
+            });
+
+        },
+
+
+        /*
+         * ====================
+         * Getters and setters.
+         * ====================
+         */
+
 
         /*
          * Emit a protected class attribute.

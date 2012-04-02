@@ -82,6 +82,25 @@ jQuery(document).ready(function($) {
      */
 
 
-    editionContainer.neatlineEdition();
+    editionContainer.neatlineEdition({
+
+        'spanHover': function(event, obj) {
+
+        },
+
+        'spanClick': function(event, obj) {
+
+            // Focus the map.
+            neatlineContainer.neatline('zoomMapToItemVectorsBySlug', obj.slug);
+
+            // Focus the timeline.
+            neatlineContainer.neatline('zoomTimelineToEventBySlug', obj.slug);
+
+            // Focus the items tray.
+            neatlineContainer.neatline('showItemDescriptionBySlug', obj.slug);
+
+        }
+
+    });
 
 });

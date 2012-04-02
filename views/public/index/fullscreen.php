@@ -1,7 +1,8 @@
+<?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
 
 /**
- * Layout CSS for editions.
+ * Fullscreen view.
  *
  * @package     omeka
  * @subpackage  neatline
@@ -10,19 +11,4 @@
  * @copyright   2012 The Board and Visitors of the University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
  */
-
-.left {
-    float: left;
-    width: 40%;
-}
-
-.right {
-    float: right;
-    width: 60%;
-}
-
-.neatline-span {
-    cursor: pointer;
-    background-color: #fdffc8;
-    padding: 2px;
-}
+?>

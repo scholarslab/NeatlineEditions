@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
 
 /**
- * Show edition.
+ * In-theme view.
  *
  * @package     omeka
  * @subpackage  neatline
@@ -13,7 +13,6 @@
  */
 ?>
 
-<?php queue_css('neatline-editions'); ?>
 <?php neatline_queueNeatlineAssets(); ?>
 <?php neatline_queueEditionAssets(); ?>
 
@@ -36,3 +35,5 @@
         'exhibit' => $exhibit
     )); ?>
 </div>
+
+<?php foot(); ?>
