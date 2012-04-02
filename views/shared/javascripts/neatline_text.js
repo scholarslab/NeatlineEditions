@@ -1,5 +1,5 @@
 /**
- * Neatline edition manager widget.
+ * Neatline text widget.
  *
  * @package     omeka
  * @subpackage  neatline
@@ -13,7 +13,7 @@
 
   'use strict';
 
-    $.widget('neatline.neatlineEdition', {
+    $.widget('neatline.neatlineText', {
 
         options: {
 
@@ -30,10 +30,6 @@
          * @return void.
          */
         _create: function() {
-
-            // Getters.
-            this._window = $(window);
-            this._body = $('body');
 
             // Bind events to markup hooks.
             this._addEvents();
@@ -60,12 +56,16 @@
 
                     // Trigger hover callback.
                     'mouseenter': function() {
-                        self._trigger('spanHover', {}, { 'slug': slug });
+                        self._trigger('spanHover', {}, {
+                          'slug': slug
+                        });
                     },
 
                     // Trigger click callback.
                     'mousedown': function() {
-                        self._trigger('spanClick', {}, { 'slug': slug });
+                        self._trigger('spanClick', {}, {
+                          'slug': slug
+                        });
                     }
 
                 });

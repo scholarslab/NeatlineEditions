@@ -23,17 +23,10 @@
     head($head);
 ?>
 
-<div class="left">
-    <div class="neatline-edition-container">
-        <?php echo $document; ?>
-    </div>
-</div>
-
-<div class="right">
-    <!-- The core Neatline partial. -->
-    <?php echo $this->partial('neatline/_neatline.php', array(
-        'exhibit' => $exhibit
-    )); ?>
-</div>
+<!-- The core Neatline Edition partial. -->
+<?php echo $this->partial('index/_neatlineEdition.php', array(
+    'exhibit' => $exhibit,
+    'document' => $document
+)); ?>
 
 <?php foot(); ?>

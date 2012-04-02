@@ -22,14 +22,12 @@ function neatline_queueEditionAssets()
 
     // Edition manager.
     queue_js('neatline_edition', 'javascripts');
-
-    // Application runner.
-    queue_js('_constructNeatlineEdition', 'javascripts');
+    queue_js('neatline_text', 'javascripts');
 
     // Public-specific CSS additions.
-    queue_css('neatline-public');
     queue_css('neatline-editions');
 
+    // Google maps API.
     $google = 'http://maps.google.com/maps/api/js?v=3.5&sensor=false';
 
     // API calls.
