@@ -64,7 +64,7 @@
                     'mouseenter': function() {
 
                         // Toggle hover class.
-                        self._activateSpans(span);
+                        self.highlightSpans(span);
 
                         // Trigger out.
                         self._trigger('spanHover', {}, {
@@ -77,7 +77,7 @@
                     'mouseleave': function() {
 
                         // Toggle hover class.
-                        self._deactivateSpans(span);
+                        self.unhighlightSpans(span);
 
                         // Trigger out.
                         self._trigger('spanBlur', {}, {
@@ -88,9 +88,6 @@
 
                     // Trigger click callback.
                     'mousedown': function() {
-
-                        // Toggle hover class.
-                        self._deactivateSpans(span);
 
                         // Trigger out.
                         self._trigger('spanClick', {}, {
@@ -142,8 +139,10 @@
             // Get spans.
             var spans = this._getSpans(slug);
 
-            // Trigger blur.
-            this._deactivateSpans(spans);
+            // Block if selected.
+            if (!spans.data('selected')) {
+                this._deactivateSpans(spans);
+            }
 
         },
 
@@ -156,10 +155,14 @@
          */
         selectSpans: function(slug) {
 
-            console.log('select ' + slug);
-
             // Get spans.
             var spans = this._getSpans(slug);
+
+            // Trigger hover.
+            this._activateSpans(spans);
+
+            // Set data attribute.
+            spans.data('selected', true);
 
         },
 
@@ -172,10 +175,14 @@
          */
         deselectSpans: function(slug) {
 
-            console.log('deselect ' + slug);
-
             // Get spans.
             var spans = this._getSpans(slug);
+
+            // Trigger hover.
+            this._deactivateSpans(spans);
+
+            // Set data attribute.
+            spans.data('selected', false);
 
         },
 
