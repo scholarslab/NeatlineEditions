@@ -166,9 +166,54 @@
                         obj.slug
                     );
 
+                },
+
+                'spanHover': function(event, obj) {
+                    console.log(obj.slug);
                 }
 
             });
+
+        },
+
+
+        /*
+         * ====================
+         * DOM touches.
+         * ====================
+         */
+
+
+        /*
+         * Highlight a span.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        highlightSpan: function(slug) {
+
+        },
+
+        /*
+         * Unhighlight a span.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        unhighlightSpan: function(slug) {
+
+        },
+
+        /*
+         * Scroll to a span.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        scrollToSpan: function(slug) {
 
         },
 
