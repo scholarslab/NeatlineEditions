@@ -141,19 +141,6 @@ class NeatlineEditionsPlugin
             )
         );
 
-        // Embed view.
-        $router->addRoute(
-            'neatlineEditionsEmbed',
-            new Zend_Controller_Router_Route(
-                'neatline-editions/embed/:id',
-                array(
-                    'module'        => 'neatline-editions',
-                    'controller'    => 'index',
-                    'action'        => 'embed'
-                )
-            )
-        );
-
     }
 
     /**

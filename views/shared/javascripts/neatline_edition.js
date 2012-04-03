@@ -43,7 +43,7 @@
             this._instantiateWidgets();
 
             // Position viewports.
-            this._positionViewports();
+            this.positionViewports();
 
         },
 
@@ -52,14 +52,21 @@
          *
          * @return void.
          */
-        _positionViewports: function() {
+        positionViewports: function() {
 
-            // Measure.
+            // Measure container.
             this.height = this.element.height();
+            this.width = this.element.outerWidth(true);
+
+            // Measure text.
+            this.textWidth = this.text.outerWidth(true);
 
             // Apply height.
             this.exhibit.height(this.height);
             this.text.height(this.height);
+
+            // Apply width to exhibit.
+            this.exhibit.width(this.width - this.textWidth);
 
             // Redraw the exhibit.
             this.exhibit.neatline('positionDivs');
@@ -76,7 +83,7 @@
             var self = this;
 
             this._window.resize(function() {
-                self._positionViewports();
+                self.positionViewports();
             });
 
         },

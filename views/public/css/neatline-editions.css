@@ -12,22 +12,29 @@
  */
 
 .neatline-edition-container {
-    height: 800px;
+    font-family: "Crimson Text", "Times New Roman", Times, serif;
+    position: relative;
 }
 
 .neatline-text-container {
     float: left;
-    width: 40%;
+    width: 25%;
     overflow-y: scroll;
+    background: #F9F9F9;
+    padding: 3em
 }
 
 .neatline-container {
     float: right;
-    width: 60%;
+    width: 75%;
 }
 
 .neatline-span {
     cursor: pointer;
-    background-color: #fdffc8;
+    background-color: #feffdd;
     padding: 2px;
+}
+
+.neatline-span:hover {
+    background-color: #fbff96;
 }

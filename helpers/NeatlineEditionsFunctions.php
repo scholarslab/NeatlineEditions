@@ -35,3 +35,31 @@ function neatline_queueEditionAssets()
     $headScript->appendScript('', 'text/javascript', array('src' => $google));
 
 }
+
+/**
+ * Queue loadout for in-theme edition.
+ *
+ * @return void.
+ */
+function neatline_queueInThemeEditionAssets()
+{
+    queue_js('_constructInThemeEdition', 'javascripts');
+}
+
+/**
+ * Queue loadout for fullscreen edition.
+ *
+ * @return void.
+ */
+function neatline_queueFullscreenEditionAssets()
+{
+
+    // Application runner.
+    queue_js('utilities/_fullscreen_positioner', 'javascripts');
+    queue_js('_constructFullscreenEdition', 'javascripts');
+
+    // Fullscreen-specific CSS.
+    queue_css('bootstrap.xtra.min');
+    queue_css('neatline-fullscreen');
+
+}

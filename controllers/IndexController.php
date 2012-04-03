@@ -58,14 +58,4 @@ class NeatlineEditions_IndexController extends Omeka_Controller_Action
 
     }
 
-    /**
-     * Embed view.
-     *
-     * @return void
-     */
-    public function embedAction()
-    {
-
-    }
-
 }

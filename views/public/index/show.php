@@ -15,6 +15,7 @@
 
 <?php neatline_queueNeatlineAssets(); ?>
 <?php neatline_queueEditionAssets(); ?>
+<?php neatline_queueInThemeEditionAssets(); ?>
 
 <?php
     $head = array(

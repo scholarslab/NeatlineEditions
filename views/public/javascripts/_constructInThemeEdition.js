@@ -1,8 +1,5 @@
-<?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
-
 /**
- * Fullscreen view.
+ * Application runner for in-theme edition.
  *
  * @package     omeka
  * @subpackage  neatline
@@ -11,4 +8,21 @@
  * @copyright   2012 The Board and Visitors of the University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
  */
-?>
+
+jQuery(document).ready(function($) {
+
+
+    // Get markup.
+    var editionContainer = $('.neatline-edition-container');
+
+
+    /*
+     * =================
+     * Edition.
+     * =================
+     */
+
+
+    editionContainer.neatlineEdition();
+
+});
