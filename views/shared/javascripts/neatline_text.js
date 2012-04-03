@@ -77,6 +77,54 @@
 
         /*
          * ====================
+         * DOM touches.
+         * ====================
+         */
+
+
+        /*
+         * Highlight a span.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        highlightSpans: function(slug) {
+
+            // Get spans.
+            var spans = this.element.find(
+              this.options.markup.span + '[data="' + slug + '"]'
+            );
+
+            console.log(spans);
+
+        },
+
+        /*
+         * Unhighlight a span.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        unhighlightSpan: function(slug) {
+
+        },
+
+        /*
+         * Scroll to a span.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        scrollToSpan: function(slug) {
+
+        },
+
+
+        /*
+         * ====================
          * Getters and setters.
          * ====================
          */
