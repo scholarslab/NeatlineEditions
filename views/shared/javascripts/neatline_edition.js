@@ -101,6 +101,28 @@
 
                 },
 
+                // When the user mouseenters on a feature on the map.
+                'mapfeatureenter': function(event, obj) {
+
+                    // Highlight text spans.
+                    self.text.neatlineEdition(
+                        'highlightSpans',
+                        obj.span
+                    );
+
+                },
+
+                // When the user mouseleaves on a feature on the map.
+                'mapfeatureleave': function(event, obj) {
+
+                    // Unhighlight text spans.
+                    self.text.neatlineEdition(
+                        'highlightSpans',
+                        obj.span
+                    );
+
+                },
+
                 // When the user clicks on a feature on the map.
                 'mapfeatureclick': function(event, obj) {
 
@@ -114,6 +136,34 @@
                     self.exhibit.neatline(
                         'showItemDescription',
                         obj.recordid
+                    );
+
+                    // Focus the text.
+                    self.text.neatlineEdition(
+                        'scrollToSpans',
+                        obj.span
+                    );
+
+                },
+
+                // When the user mouseenters on an item in the items tray.
+                'itementer': function(event, obj) {
+
+                    // Highlight text spans.
+                    self.text.neatlineEdition(
+                        'highlightSpans',
+                        obj.span
+                    );
+
+                },
+
+                // When the user mouseleaves on an item in the items tray.
+                'itemleave': function(event, obj) {
+
+                    // Unhighlight text spans.
+                    self.text.neatlineEdition(
+                        'highlightSpans',
+                        obj.span
                     );
 
                 },

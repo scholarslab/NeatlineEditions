@@ -118,7 +118,7 @@
          *
          * @return void.
          */
-        scrollToSpan: function(slug) {
+        scrollToSpans: function(slug) {
 
         },
 
