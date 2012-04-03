@@ -152,28 +152,6 @@
 
                 },
 
-                // // When an item in the items tray is activated.
-                // 'itemactivate': function(event, obj) {
-
-                //     // Select text spans.
-                //     self.text.neatlineText(
-                //         'selectSpans',
-                //         obj.slug
-                //     );
-
-                // },
-
-                // // When an item in the items tray is deactivated.
-                // 'itemdeactivate': function(event, obj) {
-
-                //     // Deselect text spans.
-                //     self.text.neatlineText(
-                //         'deselectSpans',
-                //         obj.slug
-                //     );
-
-                // },
-
                 // When the user clicks on an item in the items tray.
                 'itemclick': function(event, obj) {
 
@@ -231,6 +209,22 @@
                 },
 
                 'spanHover': function(event, obj) {
+
+                    // Highlight the map.
+                    self.exhibit.neatline(
+                        'highlightMapBySlug',
+                        obj.slug
+                    );
+
+                },
+
+                'spanBlur': function(event, obj) {
+
+                    // Unjighlight the map.
+                    self.exhibit.neatline(
+                        'unhighlightMapBySlug',
+                        obj.slug
+                    );
 
                 }
 

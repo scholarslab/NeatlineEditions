@@ -99,23 +99,13 @@
                     // Trigger click callback.
                     'mousedown': function() {
 
-                        // If the span is not selected.
-                        if (!span.data('selected')) {
+                        // Select the span.
+                        self.selectSpans(slug);
 
-                            // Select the span.
-                            self.selectSpans(slug);
-
-                            // Trigger out.
-                            self._trigger('spanClick', {}, {
-                              'slug': slug
-                            });
-
-                        }
-
-                        // If the span is selected.
-                        else {
-                            self.deselectSpans(slug);
-                        }
+                        // Trigger out.
+                        self._trigger('spanClick', {}, {
+                          'slug': slug
+                        });
 
                     }
 
