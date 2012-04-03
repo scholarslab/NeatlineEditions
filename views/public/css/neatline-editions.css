@@ -35,6 +35,6 @@
     padding: 2px;
 }
 
-.neatline-span:hover {
-    background-color: #fbff96;
+.neatline-span.active {
+    background-color: #f9ff63;
 }

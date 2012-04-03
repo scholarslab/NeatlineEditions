@@ -99,26 +99,10 @@
                         obj.recordid
                     );
 
-                },
-
-                // When the user mouseenters on a feature on the map.
-                'mapfeatureenter': function(event, obj) {
-
-                    // Highlight text spans.
-                    self.text.neatlineEdition(
-                        'highlightSpans',
-                        obj.span
-                    );
-
-                },
-
-                // When the user mouseleaves on a feature on the map.
-                'mapfeatureleave': function(event, obj) {
-
-                    // Unhighlight text spans.
-                    self.text.neatlineEdition(
-                        'highlightSpans',
-                        obj.span
+                    // Focus the text.
+                    self.text.neatlineText(
+                        'scrollToSpans',
+                        obj.slug
                     );
 
                 },
@@ -139,9 +123,9 @@
                     );
 
                     // Focus the text.
-                    self.text.neatlineEdition(
+                    self.text.neatlineText(
                         'scrollToSpans',
-                        obj.span
+                        obj.slug
                     );
 
                 },
@@ -150,9 +134,9 @@
                 'itementer': function(event, obj) {
 
                     // Highlight text spans.
-                    self.text.neatlineEdition(
+                    self.text.neatlineText(
                         'highlightSpans',
-                        obj.span
+                        obj.slug
                     );
 
                 },
@@ -161,9 +145,31 @@
                 'itemleave': function(event, obj) {
 
                     // Unhighlight text spans.
-                    self.text.neatlineEdition(
-                        'highlightSpans',
-                        obj.span
+                    self.text.neatlineText(
+                        'unhighlightSpans',
+                        obj.slug
+                    );
+
+                },
+
+                // When an item in the items tray is activated.
+                'itemactivate': function(event, obj) {
+
+                    // Select text spans.
+                    self.text.neatlineText(
+                        'selectSpans',
+                        obj.slug
+                    );
+
+                },
+
+                // When an item in the items tray is deactivated.
+                'itemdeactivate': function(event, obj) {
+
+                    // Deselect text spans.
+                    self.text.neatlineText(
+                        'deselectSpans',
+                        obj.slug
                     );
 
                 },
@@ -187,6 +193,12 @@
                     self.exhibit.neatline(
                         'showItemDescription',
                         obj.recordid
+                    );
+
+                    // Focus the text.
+                    self.text.neatlineText(
+                        'scrollToSpans',
+                        obj.slug
                     );
 
                 }

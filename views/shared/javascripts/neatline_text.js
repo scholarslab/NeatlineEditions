@@ -19,7 +19,12 @@
 
             // Markup hooks.
             markup: {
-                span: 'span.neatline-span'
+                span: 'span.neatline-span',
+            },
+
+            // CSS constants.
+            css: {
+                scroll_top_offset: 100
             }
 
         },
@@ -50,22 +55,48 @@
 
             _.each(spans, function(span) {
 
-                var slug = $(span).attr('slug');
+                var span = $(span);
+                var slug = span.attr('slug');
 
-                $(span).bind({
+                span.bind({
 
                     // Trigger hover callback.
                     'mouseenter': function() {
+
+                        // Toggle hover class.
+                        self._activateSpans(span);
+
+                        // Trigger out.
                         self._trigger('spanHover', {}, {
                           'slug': slug
                         });
+
+                    },
+
+                    // Trigger blug callback.
+                    'mouseleave': function() {
+
+                        // Toggle hover class.
+                        self._deactivateSpans(span);
+
+                        // Trigger out.
+                        self._trigger('spanBlur', {}, {
+                          'slug': slug
+                        });
+
                     },
 
                     // Trigger click callback.
                     'mousedown': function() {
+
+                        // Toggle hover class.
+                        self._deactivateSpans(span);
+
+                        // Trigger out.
                         self._trigger('spanClick', {}, {
                           'slug': slug
                         });
+
                     }
 
                 });
@@ -83,7 +114,7 @@
 
 
         /*
-         * Highlight a span.
+         * Highlight spans by slug.
          *
          * @param string slug: The slug.
          *
@@ -92,22 +123,59 @@
         highlightSpans: function(slug) {
 
             // Get spans.
-            var spans = this.element.find(
-              this.options.markup.span + '[data="' + slug + '"]'
-            );
+            var spans = this._getSpans(slug);
 
-            console.log(spans);
+            // Trigger hover.
+            this._activateSpans(spans);
 
         },
 
         /*
-         * Unhighlight a span.
+         * Unhighlight spans by slug.
          *
          * @param string slug: The slug.
          *
          * @return void.
          */
-        unhighlightSpan: function(slug) {
+        unhighlightSpans: function(slug) {
+
+            // Get spans.
+            var spans = this._getSpans(slug);
+
+            // Trigger blur.
+            this._deactivateSpans(spans);
+
+        },
+
+        /*
+         * Select spans by slug.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        selectSpans: function(slug) {
+
+            console.log('select ' + slug);
+
+            // Get spans.
+            var spans = this._getSpans(slug);
+
+        },
+
+        /*
+         * Select spans by slug.
+         *
+         * @param string slug: The slug.
+         *
+         * @return void.
+         */
+        deselectSpans: function(slug) {
+
+            console.log('deselect ' + slug);
+
+            // Get spans.
+            var spans = this._getSpans(slug);
 
         },
 
@@ -120,6 +188,59 @@
          */
         scrollToSpans: function(slug) {
 
+            // Get spans.
+            var spans = this._getSpans(slug);
+
+            // Get the new scrollTop.
+            var scrollTop = spans.position().top +
+                this.element.scrollTop() - this.options.css.scroll_top_offset;
+
+            // If the new scroll is greater than the total height,
+            // scroll exactly to the bottom.
+            if (scrollTop > this.element[0].scrollHeight) {
+                scrollTop = this.element[0].scrollHeight;
+            }
+
+            // Position at the top of the frame.
+            this.element.animate({
+                'scrollTop': scrollTop + 1
+            }, 200);
+
+        },
+
+        /*
+         * Activate a span.
+         *
+         * @param DOM Element span: The span.
+         *
+         * @return void.
+         */
+        _activateSpans: function(spans) {
+            spans.addClass('active');
+        },
+
+        /*
+         * Deactivate a span.
+         *
+         * @param DOM Element span: The span.
+         *
+         * @return void.
+         */
+        _deactivateSpans: function(spans) {
+            spans.removeClass('active');
+        },
+
+        /*
+         * Get all spans with a slug.
+         *
+         * @param string slug: The slug.
+         *
+         * @return DOM array: The spans.
+         */
+        _getSpans: function(slug) {
+            return this.element.find(
+              this.options.markup.span + '[slug="' + slug + '"]'
+            );
         },
 
 
