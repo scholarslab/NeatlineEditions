@@ -39,6 +39,9 @@
             // Bind events to markup hooks.
             this._addEvents();
 
+            // Trackers.
+            this.selectedSlug = null;
+
         },
 
         /*
@@ -64,7 +67,7 @@
                     'mouseenter': function() {
 
                         // Toggle hover class.
-                        self.highlightSpans(span);
+                        self.highlightSpans(slug);
 
                         // Trigger out.
                         self._trigger('spanHover', {}, {
@@ -77,7 +80,7 @@
                     'mouseleave': function() {
 
                         // Toggle hover class.
-                        self.unhighlightSpans(span);
+                        self.unhighlightSpans(slug);
 
                         // Trigger out.
                         self._trigger('spanBlur', {}, {
@@ -89,10 +92,23 @@
                     // Trigger click callback.
                     'mousedown': function() {
 
-                        // Trigger out.
-                        self._trigger('spanClick', {}, {
-                          'slug': slug
-                        });
+                        // If the span is not selected.
+                        if (!span.data('selected')) {
+
+                            // Select the span.
+                            self.selectSpans(slug);
+
+                            // Trigger out.
+                            self._trigger('spanClick', {}, {
+                              'slug': slug
+                            });
+
+                        }
+
+                        // If the span is selected.
+                        else {
+                            self.deselectSpans(slug);
+                        }
 
                     }
 
@@ -155,14 +171,22 @@
          */
         selectSpans: function(slug) {
 
+            console.log(slug);
+
             // Get spans.
             var spans = this._getSpans(slug);
 
-            // Trigger hover.
+            // Deselected selected span.
+            this.deselectSpans(this.selectedSlug);
+
+            // Change color.
             this._activateSpans(spans);
 
             // Set data attribute.
             spans.data('selected', true);
+
+            // Set tracker.
+            this.selectedSlug = slug;
 
         },
 
@@ -198,6 +222,9 @@
             // Get spans.
             var spans = this._getSpans(slug);
 
+            // Abort if not spans.
+            if (spans.size() === 0) { return; }
+
             // Get the new scrollTop.
             var scrollTop = spans.position().top +
                 this.element.scrollTop() - this.options.css.scroll_top_offset;
@@ -212,6 +239,9 @@
             this.element.animate({
                 'scrollTop': scrollTop + 1
             }, 200);
+
+            // Select the spans.
+            this.selectSpans(slug);
 
         },
 

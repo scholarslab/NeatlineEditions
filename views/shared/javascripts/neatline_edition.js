@@ -152,27 +152,27 @@
 
                 },
 
-                // When an item in the items tray is activated.
-                'itemactivate': function(event, obj) {
+                // // When an item in the items tray is activated.
+                // 'itemactivate': function(event, obj) {
 
-                    // Select text spans.
-                    self.text.neatlineText(
-                        'selectSpans',
-                        obj.slug
-                    );
+                //     // Select text spans.
+                //     self.text.neatlineText(
+                //         'selectSpans',
+                //         obj.slug
+                //     );
 
-                },
+                // },
 
-                // When an item in the items tray is deactivated.
-                'itemdeactivate': function(event, obj) {
+                // // When an item in the items tray is deactivated.
+                // 'itemdeactivate': function(event, obj) {
 
-                    // Deselect text spans.
-                    self.text.neatlineText(
-                        'deselectSpans',
-                        obj.slug
-                    );
+                //     // Deselect text spans.
+                //     self.text.neatlineText(
+                //         'deselectSpans',
+                //         obj.slug
+                //     );
 
-                },
+                // },
 
                 // When the user clicks on an item in the items tray.
                 'itemclick': function(event, obj) {
@@ -231,7 +231,7 @@
                 },
 
                 'spanHover': function(event, obj) {
-                    console.log(obj.slug);
+
                 }
 
             });
