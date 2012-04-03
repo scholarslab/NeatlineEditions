@@ -41,6 +41,7 @@
 
             // Trackers.
             this.selectedSlug = null;
+            this.onSpan = false;
 
         },
 
@@ -74,6 +75,9 @@
                           'slug': slug
                         });
 
+                        // Set tracker.
+                        self.onSpan = true;
+
                     },
 
                     // Trigger blug callback.
@@ -86,6 +90,9 @@
                         self._trigger('spanBlur', {}, {
                           'slug': slug
                         });
+
+                        // Set tracker.
+                        self.onSpan = false;
 
                     },
 
@@ -113,6 +120,16 @@
                     }
 
                 });
+
+            });
+
+            // Listen for mousedown on text region.
+            this.element.bind('mousedown', function() {
+
+                // Deselect currently selected spans.
+                if (!_.isNull(self.selectedSlug) && !self.onSpan) {
+                    self.deselectSpans(self.selectedSlug);
+                }
 
             });
 
@@ -171,8 +188,6 @@
          */
         selectSpans: function(slug) {
 
-            console.log(slug);
-
             // Get spans.
             var spans = this._getSpans(slug);
 
@@ -227,12 +242,14 @@
 
             // Get the new scrollTop.
             var scrollTop = spans.position().top +
-                this.element.scrollTop() - this.options.css.scroll_top_offset;
+                this.element.scrollTop() -
+                this.options.css.scroll_top_offset;
 
             // If the new scroll is greater than the total height,
             // scroll exactly to the bottom.
-            if (scrollTop > this.element[0].scrollHeight) {
-                scrollTop = this.element[0].scrollHeight;
+            var scrollHeight = this.element[0].scrollHeight;
+            if (scrollTop > scrollHeight) {
+                scrollTop = scrollHeight;
             }
 
             // Position at the top of the frame.
