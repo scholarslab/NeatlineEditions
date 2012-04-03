@@ -18,7 +18,7 @@
 
 .neatline-text-container {
     float: left;
-    width: 25%;
+    width: 30%;
     overflow-y: scroll;
     background: #F9F9F9;
     padding: 3em
@@ -26,7 +26,7 @@
 
 .neatline-container {
     float: right;
-    width: 75%;
+    width: 70%;
 }
 
 .neatline-span {

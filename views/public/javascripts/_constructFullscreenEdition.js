@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
 
     editionContainer.fullscreenpositioner({
         'resize': function() {
-            editionContainer.neatlineEdition('positionDivs');
+            editionContainer.neatlineEdition('positionViewports');
         }
     });
 

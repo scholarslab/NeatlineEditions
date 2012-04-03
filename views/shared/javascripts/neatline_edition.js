@@ -39,7 +39,6 @@
             this.text =         $(this.options.markup.text);
 
             // Construct widgets.
-            this._addResizeListener();
             this._instantiateWidgets();
 
             // Position viewports.
@@ -70,21 +69,6 @@
 
             // Redraw the exhibit.
             this.exhibit.neatline('positionDivs');
-
-        },
-
-        /*
-         * On window resize, re-render the exhibit.
-         *
-         * @return void.
-         */
-        _addResizeListener: function() {
-
-            var self = this;
-
-            this._window.resize(function() {
-                self.positionViewports();
-            });
 
         },
 
