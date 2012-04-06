@@ -130,6 +130,28 @@
 
                 },
 
+                // When the user hovers on a feature on the map.
+                'mapfeatureenter': function(event, obj) {
+
+                    // Focus the text.
+                    self.text.neatlineText(
+                        'selectSpans',
+                        obj.slug
+                    );
+
+                },
+
+                // When the user blurs on a feature on the map.
+                'mapfeatureleave': function(event, obj) {
+
+                    // Focus the text.
+                    self.text.neatlineText(
+                        'deselectSpans',
+                        obj.slug
+                    );
+
+                },
+
                 // When the user mouseenters on an item in the items tray.
                 'itementer': function(event, obj) {
 
