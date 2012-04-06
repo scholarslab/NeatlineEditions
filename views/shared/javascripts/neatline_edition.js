@@ -61,8 +61,8 @@
             this.textWidth = this.text.outerWidth(true);
 
             // Apply height.
-            this.exhibit.height(this.height);
-            this.text.height(this.height);
+            this.exhibit.outerHeight(this.height);
+            this.text.outerHeight(this.height);
 
             // Apply width to exhibit.
             this.exhibit.width(this.width - this.textWidth);

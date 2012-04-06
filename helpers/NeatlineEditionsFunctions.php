@@ -23,6 +23,7 @@ function neatline_queueEditionAssets($exhibit)
     // Edition widgets.
     queue_js('neatline_edition', 'javascripts');
     queue_js('neatline_text', 'javascripts');
+    queue_js('lib/setOuter', 'javascripts');
 
     // Edition CSS.
     queue_css('neatline-editions');

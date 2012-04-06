@@ -178,8 +178,6 @@
          */
         selectSpans: function(slug) {
 
-            console.log('select');
-
             // Get spans.
             var spans = this._getSpans(slug);
 
