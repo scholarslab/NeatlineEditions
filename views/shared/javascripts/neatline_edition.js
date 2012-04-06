@@ -133,9 +133,9 @@
                 // When the user hovers on a feature on the map.
                 'mapfeatureenter': function(event, obj) {
 
-                    // Focus the text.
+                    // Highlight the spans.
                     self.text.neatlineText(
-                        'selectSpans',
+                        'highlightSpans',
                         obj.slug
                     );
 
@@ -144,9 +144,9 @@
                 // When the user blurs on a feature on the map.
                 'mapfeatureleave': function(event, obj) {
 
-                    // Focus the text.
+                    // Unhighlight the text.
                     self.text.neatlineText(
-                        'deselectSpans',
+                        'unhighlightSpans',
                         obj.slug
                     );
 

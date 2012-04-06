@@ -178,19 +178,19 @@
          */
         selectSpans: function(slug) {
 
+            console.log('select');
+
             // Get spans.
             var spans = this._getSpans(slug);
 
-            // Deselected selected span.
+            // Deselected current selection.
             this.deselectSpans(this.selectedSlug);
 
             // Change color.
             this._activateSpans(spans);
 
-            // Set data attribute.
+            // Set trackers.
             spans.data('selected', true);
-
-            // Set tracker.
             this.selectedSlug = slug;
 
         },
