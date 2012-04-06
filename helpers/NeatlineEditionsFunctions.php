@@ -17,15 +17,20 @@
  *
  * @return void.
  */
-function neatline_queueEditionAssets()
+function neatline_queueEditionAssets($exhibit)
 {
 
-    // Edition manager.
+    // Edition widgets.
     queue_js('neatline_edition', 'javascripts');
     queue_js('neatline_text', 'javascripts');
 
-    // Public-specific CSS additions.
+    // Edition CSS.
     queue_css('neatline-editions');
+
+    // Try to load edition-specific CSS.
+    try {
+        queue_css($exhibit->slug);
+    } catch(Exception $e) {}
 
     // Google maps API.
     $google = 'http://maps.google.com/maps/api/js?v=3.5&sensor=false';
@@ -59,7 +64,6 @@ function neatline_queueFullscreenEditionAssets()
     queue_js('_constructFullscreenEdition', 'javascripts');
 
     // Fullscreen-specific CSS.
-    queue_css('bootstrap.xtra.min');
     queue_css('neatline-fullscreen');
 
 }

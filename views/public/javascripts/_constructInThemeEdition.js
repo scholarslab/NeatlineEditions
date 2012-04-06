@@ -25,4 +25,9 @@ jQuery(document).ready(function($) {
 
     editionContainer.neatlineEdition();
 
+    // Listen for window resize.
+    $(window).resize(function() {
+        editionContainer.neatlineEdition('positionViewports');
+    });
+
 });

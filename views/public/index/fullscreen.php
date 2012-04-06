@@ -14,7 +14,7 @@
 ?>
 
 <?php neatline_queueNeatlineAssets(); ?>
-<?php neatline_queueEditionAssets(); ?>
+<?php neatline_queueEditionAssets($exhibit); ?>
 <?php neatline_queueFullscreenEditionAssets(); ?>
 
 
