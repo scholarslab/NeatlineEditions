@@ -35,6 +35,12 @@
     padding: 2px;
 }
 
-.neatline-span.active {
-    background-color: #f9ff63;
+.neatline-span.highlighted {
+    cursor: pointer;
+    background-color: #feffdd;
+    padding: 2px;
+}
+
+.neatline-span.selected {
+    background-color: #fffb95;
 }

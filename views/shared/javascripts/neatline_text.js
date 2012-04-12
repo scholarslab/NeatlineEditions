@@ -146,7 +146,7 @@
             var spans = this._getSpans(slug);
 
             // Trigger hover.
-            this._activateSpans(spans);
+            spans.addClass('highlighted');
 
         },
 
@@ -164,7 +164,7 @@
 
             // Block if selected.
             if (!spans.data('selected')) {
-                this._deactivateSpans(spans);
+                spans.removeClass('highlighted');
             }
 
         },
@@ -185,7 +185,7 @@
             this.deselectSpans(this.selectedSlug);
 
             // Change color.
-            this._activateSpans(spans);
+            spans.addClass('selected');
 
             // Set trackers.
             spans.data('selected', true);
@@ -205,8 +205,9 @@
             // Get spans.
             var spans = this._getSpans(slug);
 
-            // Trigger hover.
-            this._deactivateSpans(spans);
+            // Change color.
+            spans.removeClass('selected');
+            spans.removeClass('highlighted');
 
             // Set data attribute.
             spans.data('selected', false);
@@ -248,28 +249,6 @@
             // Select the spans.
             this.selectSpans(slug);
 
-        },
-
-        /*
-         * Activate a span.
-         *
-         * @param DOM Element span: The span.
-         *
-         * @return void.
-         */
-        _activateSpans: function(spans) {
-            spans.addClass('active');
-        },
-
-        /*
-         * Deactivate a span.
-         *
-         * @param DOM Element span: The span.
-         *
-         * @return void.
-         */
-        _deactivateSpans: function(spans) {
-            spans.removeClass('active');
         },
 
         /*
