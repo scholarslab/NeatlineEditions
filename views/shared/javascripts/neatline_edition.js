@@ -38,11 +38,11 @@
             this.exhibit =      $(this.options.markup.exhibit);
             this.text =         $(this.options.markup.text);
 
-            // Construct widgets.
-            this._instantiateWidgets();
-
             // Position viewports.
             this.positionViewports();
+
+            // Construct widgets.
+            this._instantiateWidgets();
 
         },
 
