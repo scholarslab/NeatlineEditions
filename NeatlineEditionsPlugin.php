@@ -1,22 +1,22 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
+
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
- * Plugin runner.
+ * Plugin manager class.
  *
  * @package     omeka
  * @subpackage  neatline
- * @author      Scholars' Lab <>
- * @author      David McClure <david.mcclure@virginia.edu>
- * @copyright   2012 The Board and Visitors of the University of Virginia
- * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
 
 class NeatlineEditionsPlugin
 {
 
-    // Hooks.
+
+    // Hooks:
     private static $_hooks = array(
         'install',
         'uninstall',
@@ -24,31 +24,27 @@ class NeatlineEditionsPlugin
         'after_save_form_item'
     );
 
+
+    // Filters:
     private static $_filters = array(
         'admin_items_form_tabs'
     );
 
+
     /**
      * Get database, add hooks and filters.
-     *
-     * @return void
      */
     public function __construct()
     {
-
-        // Get database and tables.
         $this->_db = get_db();
         $this->exhibitsTable = $this->_db->getTable('NeatlineExhibit');
         $this->editionsTable = $this->_db->getTable('NeatlineEdition');
-
         self::addHooksAndFilters();
-
     }
+
 
     /**
      * Iterate over hooks and filters, define callbacks.
-     *
-     * @return void
      */
     public function addHooksAndFilters()
     {
@@ -67,50 +63,43 @@ class NeatlineEditionsPlugin
 
 
     /**
-     * Hook callbacks:
-     */
-
-
-    /**
      * Install.
-     *
-     * @return void.
      */
     public function install()
     {
 
         // Editions table.
-        $sql = "CREATE TABLE IF NOT EXISTS `{$this->_db->prefix}neatline_editions` (
-                `id`              int(10) unsigned not null auto_increment,
-                `exhibit_id`      int(10) unsigned NULL,
-                `item_id`         int(10) unsigned NULL,
+        $sql = "CREATE TABLE IF NOT EXISTS
+            `{$this->_db->prefix}neatline_editions` (
+                `id`            int(10) unsigned not null auto_increment,
+                `exhibit_id`    int(10) unsigned NULL,
+                `item_id`       int(10) unsigned NULL,
                  PRIMARY KEY (`id`)
-               ) ENGINE=innodb DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+            ) ENGINE=innodb DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
         $this->_db->query($sql);
 
     }
 
+
     /**
      * Uninstall.
-     *
-     * @return void.
      */
     public function uninstall()
     {
 
         // Drop the editions table.
-        $sql = "DROP TABLE IF EXISTS `{$this->_db->prefix}neatline_editions`";
+        $sql = "DROP TABLE IF EXISTS
+            `{$this->_db->prefix}neatline_editions`";
         $this->_db->query($sql);
 
     }
+
 
     /**
      * Register routes.
      *
      * @param object $router The router.
-     *
-     * @return void.
      */
     public function defineRoutes($router)
     {
@@ -143,13 +132,12 @@ class NeatlineEditionsPlugin
 
     }
 
+
     /**
      * Process exhibit assignment on item add/edit.
      *
      * @param Item $record The item.
      * @param array $post The complete $_POST.
-     *
-     * @return void.
      */
     public function afterSaveFormItem($record, $post)
     {
@@ -174,15 +162,9 @@ class NeatlineEditionsPlugin
 
 
     /**
-     * Filter callbacks:
-     */
-
-
-    /**
      * Add tab to items add/edit.
      *
      * @param array $tabs Associative array with tab name => markup.
-     *
      * @return array The tabs array with the Neatline Editions tab.
      */
     public function adminItemsFormTabs($tabs)
@@ -213,5 +195,6 @@ class NeatlineEditionsPlugin
         return $tabs;
 
     }
+
 
 }
