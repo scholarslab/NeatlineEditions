@@ -1,15 +1,14 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
+
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
  * Edition row class.
  *
  * @package     omeka
  * @subpackage  neatline
- * @author      Scholars' Lab <>
- * @author      David McClure <david.mcclure@virginia.edu>
- * @copyright   2012 The Board and Visitors of the University of Virginia
- * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
 class NeatlineEdition extends Omeka_record
@@ -17,10 +16,15 @@ class NeatlineEdition extends Omeka_record
 
 
     /**
-     * Record attributes.
+     * The id of the parent exhibit.
+     * int(10) unsigned NULL
      */
-
     public $exhibit_id;
+
+    /**
+     * The id of the parent item.
+     * int(10) unsigned NULL
+     */
     public $item_id;
 
 
@@ -29,8 +33,6 @@ class NeatlineEdition extends Omeka_record
      *
      * @param Omeka_record $item The item record.
      * @param Omeka_record $exhibit The exhibit record.
-     *
-     * @return void.
      */
     public function __construct($item = null, $exhibit = null)
     {
@@ -49,6 +51,7 @@ class NeatlineEdition extends Omeka_record
 
     }
 
+
     /**
      * Get the parent exhibit.
      *
@@ -59,6 +62,7 @@ class NeatlineEdition extends Omeka_record
         $_exhibitsTable = $this->getTable('NeatlineExhibit');
         return $_exhibitsTable->find($this->exhibit_id);
     }
+
 
     /**
      * Get the parent item.
@@ -71,6 +75,7 @@ class NeatlineEdition extends Omeka_record
         return $_itemsTable->find($this->item_id);
     }
 
+
     /**
      * Get the document.
      *
@@ -78,8 +83,9 @@ class NeatlineEdition extends Omeka_record
      */
     public function getDocumentMarkup()
     {
-        $item = $this->getItem();
-        return neatline_getItemMetadata($item, 'Item Type Metadata', 'Text');
+        return neatline_getItemMetadata($this->getItem(),
+            'Item Type Metadata', 'Text');
     }
+
 
 }

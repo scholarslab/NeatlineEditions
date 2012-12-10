@@ -1,21 +1,19 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
+
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
  * Helper functions.
  *
  * @package     omeka
  * @subpackage  neatline
- * @author      Scholars' Lab <>
- * @author      David McClure <david.mcclure@virginia.edu>
- * @copyright   2012 The Board and Visitors of the University of Virginia
- * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
+
 
 /**
  * Include the static files for an edition.
- *
- * @return void.
  */
 function neatline_queueEditionAssets($exhibit)
 {
@@ -34,28 +32,27 @@ function neatline_queueEditionAssets($exhibit)
     } catch(Exception $e) {}
 
     // Google maps API.
-    $google = 'http://maps.google.com/maps/api/js?v=3.5&sensor=false';
+    $google = 'http://maps.google.com/maps/api/js?v=3.8&sensor=false';
 
-    // API calls.
+    // Google maps.
     $headScript = __v()->headScript();
-    $headScript->appendScript('', 'text/javascript', array('src' => $google));
+    $headScript->appendScript('', 'text/javascript',
+        array('src' => $google));
 
 }
 
+
 /**
  * Queue loadout for in-theme edition.
- *
- * @return void.
  */
 function neatline_queueInThemeEditionAssets()
 {
     queue_js('_constructInThemeEdition', 'javascripts');
 }
 
+
 /**
  * Queue loadout for fullscreen edition.
- *
- * @return void.
  */
 function neatline_queueFullscreenEditionAssets()
 {

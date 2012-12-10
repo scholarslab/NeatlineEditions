@@ -1,24 +1,22 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
+
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
- * Integration tests for additions to item add/edit workflow.
+ * Items controller integration tests.
  *
  * @package     omeka
  * @subpackage  neatline
- * @author      Scholars' Lab <>
- * @author      David McClure <david.mcclure@virginia.edu>
- * @copyright   2012 The Board and Visitors of the University of Virginia
- * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
 class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
 {
 
+
     /**
      * Install the plugin.
-     *
-     * @return void.
      */
     public function setUp()
     {
@@ -26,10 +24,9 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
         $this->editionsTable = $this->db->getTable('NeatlineEdition');
     }
 
+
     /**
      * There should be a Neatline editions tab in the item add form.
-     *
-     * @return void.
      */
     public function testNeatlineEditionsItemAddTab()
     {
@@ -42,22 +39,23 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
         $this->dispatch('items/add');
 
         // Check for tab.
-        $this->assertXpathContentContains(
-            '//ul[@id="section-nav"]/li/a[@href="#neatline-editions-metadata"]',
+        $this->assertXpathContentContains('//ul[@id="section-nav"]/
+            li/a[@href="#neatline-editions-metadata"]',
             'Neatline Editions'
         );
 
         // Check for select and options.
-        $this->assertXpath('//select[@id="exhibit-id"][@name="exhibit_id"]');
+        $this->assertXpath(
+            '//select[@id="exhibit-id"][@name="exhibit_id"]');
         $this->assertXpathContentContains(
             '//select[@id="exhibit-id"]/option[1]',
             'Select Below');
         $this->assertXpathContentContains(
-            '//select[@id="exhibit-id"]/option[@value="' . $exhibit1->id . '"]',
-            'Exhibit 1');
+            '//select[@id="exhibit-id"]/option[@value="' .
+            $exhibit1->id . '"]', 'Exhibit 1');
         $this->assertXpathContentContains(
-            '//select[@id="exhibit-id"]/option[@value="' . $exhibit2->id . '"]',
-            'Exhibit 2');
+            '//select[@id="exhibit-id"]/option[@value="' .
+            $exhibit2->id . '"]', 'Exhibit 2');
 
         // Create item.
         $item = new Item();
@@ -68,10 +66,9 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
 
     }
 
+
     /**
      * There should be a Neatline editions tab in the item edit form.
-     *
-     * @return void.
      */
     public function testItemEditTab()
     {
@@ -88,30 +85,30 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
         $this->dispatch('items/edit/' . $item->id);
 
         // Check for tab.
-        $this->assertXpathContentContains(
-            '//ul[@id="section-nav"]/li/a[@href="#neatline-editions-metadata"]',
+        $this->assertXpathContentContains('//ul[@id="section-nav"]/
+            li/a[@href="#neatline-editions-metadata"]',
             'Neatline Editions'
         );
 
         // Check for select and options.
-        $this->assertXpath('//select[@id="exhibit-id"][@name="exhibit_id"]');
+        $this->assertXpath(
+            '//select[@id="exhibit-id"][@name="exhibit_id"]');
         $this->assertXpathContentContains(
             '//select[@id="exhibit-id"]/option[1]',
             'Select Below');
         $this->assertXpathContentContains(
-            '//select[@id="exhibit-id"]/option[@value="' . $exhibit1->id . '"]',
-            'Exhibit 1');
+            '//select[@id="exhibit-id"]/option[@value="' .
+            $exhibit1->id . '"]', 'Exhibit 1');
         $this->assertXpathContentContains(
-            '//select[@id="exhibit-id"]/option[@value="' . $exhibit2->id . '"]',
-            'Exhibit 2');
+            '//select[@id="exhibit-id"]/option[@value="' .
+            $exhibit2->id . '"]', 'Exhibit 2');
 
     }
+
 
     /**
      * When an edition exists, the dropdown select should default to the
      * previously selected exhibit.
-     *
-     * @return void.
      */
     public function testItemEditSelect()
     {
@@ -152,8 +149,6 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
     /**
      * When an item is added and an exhibit is specified, a new edition
      * should be created.
-     *
-     * @return void.
      */
     public function testEditionCreationOnItemAdd()
     {
@@ -186,8 +181,6 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
     /**
      * When an item is edited and an exhibit is specified, a new edition
      * should be created.
-     *
-     * @return void.
      */
     public function testEditionCreationOnItemEdit()
     {
@@ -225,11 +218,10 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
 
     }
 
+
     /**
-     * When an item with an edition is edited and the edition is set
-     * to null, the edition should be deleted.
-     *
-     * @return void.
+     * When an item with an edition is edited and the edition is set to
+     * null, the edition should be deleted.
      */
     public function testEditionDeleteOnItemEdit()
     {
@@ -269,5 +261,6 @@ class NLEditions_ItemsControllerTest extends NLEditions_Test_AppTestCase
         $this->assertNotNull($edition2);
 
     }
+
 
 }

@@ -1,15 +1,14 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4; */
+
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
  * Testing helper class.
  *
  * @package     omeka
  * @subpackage  neatline
- * @author      Scholars' Lab <>
- * @author      David McClure <david.mcclure@virginia.edu>
- * @copyright   2011 The Board and Visitors of the University of Virginia
- * @license     http://www.apache.org/licenses/LICENSE-2.0.html Apache 2 License
+ * @copyright   2012 Rector and Board of Visitors, University of Virginia
+ * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
 require_once '../NeatlineEditionsPlugin.php';
@@ -18,63 +17,44 @@ require_once '../../Neatline/NeatlinePlugin.php';
 class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 {
 
+
     private $_dbHelper;
+
 
     /**
      * Spin up the plugins and prepare the database.
-     *
-     * @return void.
      */
     public function setUpPlugin()
     {
 
         parent::setUp();
 
+        // Authenticate starting user.
         $this->user = $this->db->getTable('User')->find(1);
         $this->_authenticateUser($this->user);
 
-        // Set up Neatline.
-        $neatline_plugin_broker = get_plugin_broker();
-        $this->_addNeatlinePluginHooksAndFilters($neatline_plugin_broker, 'Neatline');
-        $neatline_plugin_helper = new Omeka_Test_Helper_Plugin;
-        $neatline_plugin_helper->setUp('Neatline');
+        // Neatline broker.
+        $neatline_broker = get_plugin_broker();
+        $neatline_broker->setCurrentPluginDirName('Neatline');
+        new NeatlinePlugin;
 
-        // Set up Neatline Editions.
-        $neatline_editions_plugin_broker = get_plugin_broker();
-        $this->_addNeatlineEditionsPluginHooksAndFilters($neatline_editions_plugin_broker, 'NeatlineEditions');
-        $neatline_editions_plugin_helper = new Omeka_Test_Helper_Plugin;
-        $neatline_editions_plugin_helper->setUp('NeatlineEditions');
+        // Neatline helper.
+        $neatline_helper = new Omeka_Test_Helper_Plugin;
+        $neatline_helper->setUp('Neatline');
 
+        // Editions broker.
+        $editions_broker = get_plugin_broker();
+        $editions_broker->setCurrentPluginDirName('NeatlineEditions');
+        new NeatlineEditionsPlugin;
+
+        // Editions helper.
+        $editions_helper = new Omeka_Test_Helper_Plugin;
+        $editions_helper->setUp('NeatlineEditions');
+
+        // Database helper.
         $this->_dbHelper = Omeka_Test_Helper_Db::factory($this->core);
 
     }
-
-    /**
-     * Install Neatline.
-     *
-     * @return void.
-     */
-    public function _addNeatlinePluginHooksAndFilters($plugin_broker, $plugin_name)
-    {
-        $plugin_broker->setCurrentPluginDirName($plugin_name);
-        new NeatlinePlugin;
-    }
-
-    /**
-     * Install Neatline Editions.
-     *
-     * @return void.
-     */
-    public function _addNeatlineEditionsPluginHooksAndFilters($plugin_broker, $plugin_name)
-    {
-        $plugin_broker->setCurrentPluginDirName($plugin_name);
-        new NeatlineEditionsPlugin;
-    }
-
-
-    /**
-     * Testing helpers.
-     */
 
 
     /**
@@ -105,12 +85,12 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 
     }
 
+
     /**
      * Create a Neatline edition.
      *
      * @param Omeka_record $item The item record.
      * @param Omeka_record $exhibit The exhibit record.
-     *
      * @return Omeka_record $neatline The exhibit.
      */
     public function _createEdition($item = null, $exhibit = null)
@@ -134,6 +114,7 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 
     }
 
+
     /**
      * Create an Item.
      *
@@ -141,13 +122,11 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
      */
     public function _createItem()
     {
-
         $item = new Item;
         $item->save();
-
         return $item;
-
     }
+
 
     /**
      * Create an Item of item type metadata Document.
@@ -172,6 +151,7 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
 
     }
 
+
     /**
      * Create an element text for an item.
      *
@@ -179,10 +159,10 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
      * @param string $elementSet The element set.
      * @param string $elementName The element name.
      * @param string $value The value for the text.
-     *
      * @return Omeka_record $text The new text.
      */
-    public function _createElementText($item, $elementSet, $elementName, $value)
+    public function _createElementText(
+        $item, $elementSet, $elementName, $value)
     {
 
         // Get tables.
@@ -191,8 +171,11 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
         $elementTextTable = $_db->getTable('ElementText');
         $recordTypeTable = $_db->getTable('RecordType');
 
-        // Fetch element record and the item type id.
-        $element = $elementTable->findByElementSetNameAndElementName($elementSet, $elementName);
+        // Fetch element record.
+        $element = $elementTable->findByElementSetNameAndElementName(
+            $elementSet, $elementName);
+
+        // Get item type id.
         $itemTypeId = $recordTypeTable->findIdFromName('Item');
 
         $text = new ElementText;
@@ -205,5 +188,6 @@ class NLEditions_Test_AppTestCase extends Omeka_Test_AppTestCase
         return $text;
 
     }
+
 
 }
