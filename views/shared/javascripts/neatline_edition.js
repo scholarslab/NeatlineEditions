@@ -38,37 +38,8 @@
             this.exhibit =      $(this.options.markup.exhibit);
             this.text =         $(this.options.markup.text);
 
-            // Position viewports.
-            this.positionViewports();
-
             // Construct widgets.
             this._instantiateWidgets();
-
-        },
-
-        /*
-         * Measure container, position viewports.
-         *
-         * @return void.
-         */
-        positionViewports: function() {
-
-            // Measure container.
-            this.height = this.element.height();
-            this.width = this.element.outerWidth(true);
-
-            // Measure text.
-            this.textWidth = this.text.outerWidth(true);
-
-            // Apply height.
-            this.exhibit.outerHeight(this.height);
-            this.text.outerHeight(this.height);
-
-            // Apply width to exhibit.
-            this.exhibit.width(this.width - this.textWidth);
-
-            // Redraw the exhibit.
-            this.exhibit.neatline('positionDivs');
 
         },
 
