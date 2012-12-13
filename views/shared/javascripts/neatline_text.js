@@ -24,7 +24,7 @@
 
             // CSS constants.
             css: {
-                scroll_top_offset: 100
+                scroll_top_offset: 300
             }
 
         },
