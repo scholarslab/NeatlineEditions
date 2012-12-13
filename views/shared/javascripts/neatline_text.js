@@ -80,7 +80,7 @@
 
                     },
 
-                    // Trigger blug callback.
+                    // Trigger blur callback.
                     'mouseleave': function() {
 
                         // Toggle hover class.
@@ -102,6 +102,13 @@
                         // Select the span.
                         self.selectSpans(slug);
 
+                        // Unselect current feature.
+                        if (this.selectedSlug) {
+                            self._trigger('spanBlur', {}, {
+                              'slug': this.selectedSlug
+                            });
+                        }
+
                         // Trigger out.
                         self._trigger('spanClick', {}, {
                           'slug': slug
@@ -118,7 +125,15 @@
 
                 // Deselect currently selected spans.
                 if (!_.isNull(self.selectedSlug) && !self.onSpan) {
+
+                    // Unselect current feature.
+                    self._trigger('spanBlur', {}, {
+                      'slug': self.selectedSlug
+                    });
+
+                    // Deselect on text.
                     self.deselectSpans(self.selectedSlug);
+
                 }
 
             });
