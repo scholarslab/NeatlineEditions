@@ -99,15 +99,13 @@
                     // Trigger click callback.
                     'mousedown': function() {
 
+                        // Unselect current feature.
+                        if (self.selectedSlug && self.selectedSlug != slug) {
+                            self._trigger('spanUnselect');
+                        }
+
                         // Select the span.
                         self.selectSpans(slug);
-
-                        // Unselect current feature.
-                        if (this.selectedSlug) {
-                            self._trigger('spanBlur', {}, {
-                              'slug': this.selectedSlug
-                            });
-                        }
 
                         // Trigger out.
                         self._trigger('spanClick', {}, {
@@ -127,9 +125,7 @@
                 if (!_.isNull(self.selectedSlug) && !self.onSpan) {
 
                     // Unselect current feature.
-                    self._trigger('spanBlur', {}, {
-                      'slug': self.selectedSlug
-                    });
+                    self._trigger('spanUnselect');
 
                     // Deselect on text.
                     self.deselectSpans(self.selectedSlug);

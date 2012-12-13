@@ -213,11 +213,18 @@
 
                 'spanBlur': function(event, obj) {
 
-                    // Unjighlight the map.
+                    // Unhighlight the map.
                     self.exhibit.neatline(
                         'unhighlightMapBySlug',
                         obj.slug
                     );
+
+                },
+
+                'spanUnselect': function(event, obj) {
+
+                    // Unhighlight the map.
+                    self.exhibit.neatline('unselectMapSelectedRecord');
 
                 }
 
